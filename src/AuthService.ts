@@ -206,6 +206,7 @@ export class AuthService<TIDToken = JWTIDToken> {
       contentType,
       provider,
       tokenEndpoint,
+	  resource,
       redirectUri,
       autoRefresh = true
     } = this.props
@@ -214,6 +215,7 @@ export class AuthService<TIDToken = JWTIDToken> {
     let payload: TokenRequestBody = {
       clientId,
       ...(clientSecret ? { clientSecret } : {}),
+	  ...(resource ? { resource } : {}),
       redirectUri,
       grantType
     }
