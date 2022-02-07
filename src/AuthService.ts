@@ -173,7 +173,7 @@ export class AuthService<TIDToken = JWTIDToken> {
 
   // this will do a full page reload and to to the OAuth2 provider's login page and then redirect back to redirectUri
   authorize(): boolean {
-    const { clientId, provider, authorizeEndpoint, redirectUri, scopes, audience, acr_values, resource } = this.props
+    const { clientId, provider, authorizeEndpoint, redirectUri, scopes, audience, acr_values, resource, clientSecret } = this.props
 
     const pkce = createPKCECodes()
     window.localStorage.setItem('pkce', JSON.stringify(pkce))
@@ -185,6 +185,7 @@ export class AuthService<TIDToken = JWTIDToken> {
       clientId,
 	  ...(acr_values && { acr_values }),
 	  ...(resource && { resource }),
+	  ...(clientSecret && { clientSecret }),
       scope: scopes.join(' '),
       responseType: 'code',
       redirectUri,
