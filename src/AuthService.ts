@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode'
 
 export interface AuthServiceProps {
   clientId: string
+  acr_values?: string
   clientSecret?: string
   contentType?: string
   location: Location
@@ -171,7 +172,7 @@ export class AuthService<TIDToken = JWTIDToken> {
 
   // this will do a full page reload and to to the OAuth2 provider's login page and then redirect back to redirectUri
   authorize(): boolean {
-    const { clientId, provider, authorizeEndpoint, redirectUri, scopes, audience } = this.props
+    const { clientId, provider, authorizeEndpoint, redirectUri, scopes, audience, acr_values } = this.props
 
     const pkce = createPKCECodes()
     window.localStorage.setItem('pkce', JSON.stringify(pkce))
@@ -181,6 +182,7 @@ export class AuthService<TIDToken = JWTIDToken> {
 
     const query = {
       clientId,
+	  ...(acr_values && { acr_values }),
       scope: scopes.join(' '),
       responseType: 'code',
       redirectUri,
