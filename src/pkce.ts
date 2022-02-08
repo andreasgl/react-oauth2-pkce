@@ -14,7 +14,7 @@ export const base64URLEncode = (str: Buffer): string => {
     .replace(/=/g, '')
 }
 
-export const makeid = (int: length): string {
+export const makeid = (length: number): string => {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     var charactersLength = characters.length;
