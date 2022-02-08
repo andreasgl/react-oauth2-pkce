@@ -1,4 +1,4 @@
-import { randomBytes, createHash } from 'crypto'
+import { createHash } from 'crypto'
 
 export type PKCECodePair = {
   codeVerifier: string
