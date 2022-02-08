@@ -132,6 +132,7 @@ export class AuthService<TIDToken = JWTIDToken> {
     const now = new Date().getTime()
     auth.expires_at = now + (auth.expires_in + refreshSlack) * 1000
     window.sessionStorage.setItem('auth', JSON.stringify(auth))
+	Office.context.ui.messageParent(JSON.stringify(auth));
   }
 
   getAuthTokens(): AuthTokens {
